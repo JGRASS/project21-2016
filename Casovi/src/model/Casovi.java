@@ -2,7 +2,11 @@ package model;
 
 import java.util.LinkedList;
 
+import controller.so.SODeserialize;
 import controller.so.SODodajStudenta;
+import controller.so.SOIzbrisiStudenta;
+import controller.so.SOPronadjiStudenta;
+import controller.so.SOSerialize;
 import model.interfaces.CasoviInterface;
 /**
  * Klasa Casovi predstavlja glavnu klasu.
@@ -17,25 +21,25 @@ public class Casovi implements CasoviInterface{
 
 	@Override
 	public void dodajStudenta(Student student) {
-		SODodajStudenta.izvrsi(student,studenti);
+		SODodajStudenta.izvrsi(student, studenti);
 		
 	}
 
 	@Override
 	public void izbrisiStudenta(Student student) {
-		// TODO Auto-generated method stub
+		SOIzbrisiStudenta.izvrsi(student, studenti);
 		
 	}
 
 	@Override
 	public void serialize(String path) {
-		// TODO Auto-generated method stub
+		SOSerialize.izvrsi();
 		
 	}
 
 	@Override
 	public void deserialize(String path) {
-		// TODO Auto-generated method stub
+		SODeserialize.izvrsi();
 		
 	}
 
@@ -46,7 +50,7 @@ public class Casovi implements CasoviInterface{
 
 	@Override
 	public Student pronadjiStudenta(String imePrezime, String brTel) {
-		// TODO Auto-generated method stub
-		return null;
+		return SOPronadjiStudenta.izvrsi(imePrezime, brTel);
+		
 	}
 }
