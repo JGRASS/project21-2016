@@ -2,6 +2,7 @@ package model.interfaces;
 
 import java.util.LinkedList;
 
+import model.Cas;
 import model.Student;
 /**
  * Interfejs CasoviInterface koji definise metode
@@ -42,4 +43,10 @@ public interface CasoviInterface {
 	 * @return objekat klase Student
 	 */
 	public Student pronadjiStudenta(String brTel);
+	/**
+	 * Metoda koja dodaje novi cas za odredjenog studenta.
+	 * @param cas - objekat klase Cas
+	 * @param s - objekat klase Student
+	 */
+	public void dodajCas(Cas cas,Student s);
 }

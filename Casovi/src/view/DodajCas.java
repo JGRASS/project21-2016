@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.GUIKontroler;
+import model.Student;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -28,11 +29,11 @@ public class DodajCas extends JFrame {
 	private JTextArea txtDomaci;
 	private JButton btnCancel;
 	private JButton btnSave;
-
+	private Student s;
 	/**
 	 * Create the frame.
 	 */
-	public DodajCas() {
+	public DodajCas(Student s) {
 		setTitle("Dodavanje casa");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 372, 265);
@@ -48,6 +49,7 @@ public class DodajCas extends JFrame {
 		contentPane.add(getTxtDomaci(), "cell 1 2,grow");
 		contentPane.add(getBtnSave(), "flowx,cell 1 3,grow");
 		contentPane.add(getBtnCancel(), "cell 1 3,grow");
+		this.s = s;
 	}
 
 	private JLabel getLblNaziv() {
@@ -106,7 +108,8 @@ public class DodajCas extends JFrame {
 			btnSave = new JButton("Save");
 			btnSave.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					GUIKontroler.dodajCas(txtNaziv.getText(), txtOpis.getText(), txtDomaci.getText());
+					GUIKontroler.dodajCas(txtNaziv.getText(), txtOpis.getText(), txtDomaci.getText(),s);
+					dispose();
 				}
 			});
 		}

@@ -3,6 +3,7 @@ package model;
 import java.util.LinkedList;
 
 import controller.so.SODeserialize;
+import controller.so.SODodajCas;
 import controller.so.SODodajStudenta;
 import controller.so.SOIzbrisiStudenta;
 import controller.so.SOPronadjiStudenta;
@@ -53,4 +54,10 @@ public class Casovi implements CasoviInterface{
 		return SOPronadjiStudenta.izvrsi(brTel, studenti);
 		
 	}
+
+	@Override
+	public void dodajCas(Cas cas, Student s) {
+		SODodajCas.izvrsi(cas,s,studenti);
+	}
+	
 }

@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class MoreInfo extends JFrame {
 
@@ -47,7 +49,7 @@ public class MoreInfo extends JFrame {
 	private JTextArea textAreaDomaci;
 	private JButton btnCancel;
 	private JButton btnDodajCas;
-
+	private Student s;
 	/**
 	 * Create the frame.
 	 */
@@ -78,11 +80,12 @@ public class MoreInfo extends JFrame {
 		contentPane.add(getBtnSave(), "flowx,cell 0 9,alignx trailing,growy");
 		contentPane.add(getBtnCancel(), "cell 0 9");
 		contentPane.add(getBtnDodajCas(), "cell 0 4");
-		populate(s);
+		this.s = s;
+		populate();
 		
 	}
 
-	private void populate(Student s) {
+	private void populate() {
 		txtImeprezime.setText(s.getImePrezime());
 		txtBrTel.setText(s.getBrTel());
 		txtEmail.setText(s.getEmail());
@@ -93,6 +96,10 @@ public class MoreInfo extends JFrame {
 	private void populateCombo(LinkedList<Cas> casovi){
 		for (Cas cas : casovi) {
 			comboBox.addItem(cas.getNaziv());		
+		}
+		if(!casovi.isEmpty()){
+			textAreaOpis.setText(casovi.getFirst().getOpis());
+			textAreaDomaci.setText(casovi.getFirst().getDomaci());
 		}
 	}
 	private JLabel getLabel() {
@@ -173,6 +180,12 @@ public class MoreInfo extends JFrame {
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
+			comboBox.addItemListener(new ItemListener() {
+				public void itemStateChanged(ItemEvent e) {
+					textAreaDomaci.setText(s.getCasovi().get(comboBox.getSelectedIndex()).getDomaci());
+					textAreaOpis.setText(s.getCasovi().get(comboBox.getSelectedIndex()).getOpis());
+				}
+			});
 		}
 		return comboBox;
 	}
@@ -190,6 +203,11 @@ public class MoreInfo extends JFrame {
 			btnSave.setPreferredSize(new Dimension(100, 23));
 			btnSave.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					s.setBrTel(txtBrTel.getText());
+					s.setImePrezime(txtImeprezime.getText());
+					s.setEmail(txtEmail.getText());
+					s.setUplaceno(Integer.parseInt(txtUplaceno.getText()));
+					GUIKontroler.osvezi(s);
 					dispose();
 				}
 			});
@@ -259,7 +277,8 @@ public class MoreInfo extends JFrame {
 			btnDodajCas = new JButton("Dodaj cas");
 			btnDodajCas.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.pokreniDodajCasProzor();
+					GUIKontroler.pokreniDodajCasProzor(s);
+					populate();
 				}
 			});
 		}

@@ -36,18 +36,19 @@ public class Student implements Serializable{
 	
 	public Student(){
 		casovi = new LinkedList<Cas>();
+
 	}
 	public Student(String imePrezime, String brTel, String email){
-		this.imePrezime = imePrezime;
-		this.brTel = brTel;
-		this.email = email;
+		setImePrezime(imePrezime);
+		setBrTel(brTel);
+		setEmail(email);
 		this.casovi = new LinkedList<>();
 		this.uplaceno = 0;
 	}
 	public Student(String imePrezime, String brTel, String email, int uplaceno, LinkedList<Cas> casovi) {
-		this.imePrezime = imePrezime;
-		this.brTel = brTel;
-		this.email = email;
+		setImePrezime(imePrezime);
+		setBrTel(brTel);
+		setEmail(email);
 		this.uplaceno = uplaceno;
 		this.casovi = casovi;
 	}
@@ -56,12 +57,16 @@ public class Student implements Serializable{
 		return imePrezime;
 	}
 	public void setImePrezime(String imePrezime) {
+		if(imePrezime.isEmpty() || imePrezime == null)
+			throw new RuntimeException("Polje za ime i prezime ne sme biti prazno.");
 		this.imePrezime = imePrezime;
 	}
 	public String getBrTel() {
 		return brTel;
 	}
 	public void setBrTel(String brTel) {
+		if(brTel.isEmpty() || brTel == null)
+			throw new RuntimeException("Broj telefona ne sme biti prazan.");
 		this.brTel = brTel;
 	}
 	public String getEmail() {
@@ -81,6 +86,10 @@ public class Student implements Serializable{
 	}
 	public void setCasovi(LinkedList<Cas> casovi) {
 		this.casovi = casovi;
+	}
+	public void dodajCas(Cas cas){
+		if(!casovi.contains(cas))
+			casovi.add(cas);
 	}
 	@Override
 	public int hashCode() {

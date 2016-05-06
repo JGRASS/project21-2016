@@ -34,6 +34,8 @@ public class Cas {
 	}
 
 	public void setNaziv(String naziv) {
+		if(naziv.isEmpty() || naziv == null)
+			throw new RuntimeException("Naziv ne sme biti prazan.");
 		this.naziv = naziv;
 	}
 
@@ -42,6 +44,8 @@ public class Cas {
 	}
 
 	public void setOpis(String opis) {
+		if(opis.isEmpty() || opis == null)
+			throw new RuntimeException("Opis ne sme biti prazan.");
 		this.opis = opis;
 	}
 
@@ -50,6 +54,8 @@ public class Cas {
 	}
 
 	public void setDomaci(String domaci) {
+		if(domaci.isEmpty() || domaci == null)
+			throw new RuntimeException("Domaci ne sme biti prazan.");
 		this.domaci = domaci;
 	}
 	

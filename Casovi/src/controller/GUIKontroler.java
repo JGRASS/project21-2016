@@ -78,10 +78,14 @@ public class GUIKontroler {
 	}
 
 	public static void dodajStudenta(String imePrezime,String brTel,String email) {
-		Student s = new Student(imePrezime,brTel,email);
-		casovi.dodajStudenta(s);
-		glavniProzor.osveziStudentTabelu();
-		promena = true;
+		try {
+			Student s = new Student(imePrezime,brTel,email);
+			casovi.dodajStudenta(s);
+			glavniProzor.osveziStudentTabelu();
+			promena = true;
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(glavniProzor, e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	public static void izbrisiStudenta(Student student){
@@ -100,13 +104,27 @@ public class GUIKontroler {
 		glavniProzor.osveziStudentTabelu();
 	}
 
-	public static void pokreniDodajCasProzor() {
-		DodajCas prozor = new DodajCas();
+	public static void pokreniDodajCasProzor(Student s) {
+		DodajCas prozor = new DodajCas(s);
 		prozor.setVisible(true);
 		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
 	}
 
-	public static void dodajCas(String naziv, String opis, String domaci) {
+	public static void dodajCas(String naziv, String opis, String domaci,Student s) {
 		
+		try {
+			Cas cas = new Cas();
+			cas.setNaziv(naziv);
+			cas.setOpis(opis);
+			cas.setDomaci(domaci);
+			casovi.dodajCas(cas, s);
+			glavniProzor.osveziStudentTabelu();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(glavniProzor, e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public static void osvezi(Student s) {
+		glavniProzor.osveziStudentTabelu();
 	}
 }
