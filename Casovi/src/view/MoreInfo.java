@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.GUIKontroler;
 import model.Cas;
 import model.Student;
 import net.miginfocom.swing.MigLayout;
@@ -256,6 +257,11 @@ public class MoreInfo extends JFrame {
 	private JButton getBtnDodajCas() {
 		if (btnDodajCas == null) {
 			btnDodajCas = new JButton("Dodaj cas");
+			btnDodajCas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.pokreniDodajCasProzor();
+				}
+			});
 		}
 		return btnDodajCas;
 	}

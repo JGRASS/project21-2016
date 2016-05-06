@@ -5,11 +5,13 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 import controller.so.SODodajStudenta;
+import model.Cas;
 import model.Casovi;
 import model.Student;
 import model.interfaces.CasoviInterface;
 import util.Utility;
 import view.Banka;
+import view.DodajCas;
 import view.GlavniProzor;
 import view.MoreInfo;
 import view.NoviStudent;
@@ -71,7 +73,7 @@ public class GUIKontroler {
 	}
 	
 	public static void upozoriDaBiraRed() {
-		JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Izaberite studenta za brisanje.",
+		JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Izaberite studenta.",
 				"Greska", JOptionPane.ERROR_MESSAGE);
 	}
 
@@ -96,5 +98,15 @@ public class GUIKontroler {
 	public static void deserijalizuj() {
 		casovi.deserialize(Utility.getResourcesDir() + "casovi.out");
 		glavniProzor.osveziStudentTabelu();
+	}
+
+	public static void pokreniDodajCasProzor() {
+		DodajCas prozor = new DodajCas();
+		prozor.setVisible(true);
+		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
+	}
+
+	public static void dodajCas(String naziv, String opis, String domaci) {
+		
 	}
 }
