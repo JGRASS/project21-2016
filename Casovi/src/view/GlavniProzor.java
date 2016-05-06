@@ -165,6 +165,17 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnMoreInfo() {
 		if (btnMoreInfo == null) {
 			btnMoreInfo = new JButton("More info...");
+			btnMoreInfo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(table.getSelectedRow() == -1){
+						GUIKontroler.upozoriDaBiraRed();
+						return;
+					}
+					TblModelStudent model = (TblModelStudent) table.getModel();
+					Student s = model.vratiStudenta(table.getSelectedRow());
+					GUIKontroler.pokreniMoreInfoProzor(s);
+				}
+			});
 		}
 		return btnMoreInfo;
 	}

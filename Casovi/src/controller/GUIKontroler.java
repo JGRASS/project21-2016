@@ -48,8 +48,8 @@ public class GUIKontroler {
 		}
 	}
 	
-	public static void pokreniMoreInfoProzor(){
-		MoreInfo prozor = new MoreInfo();
+	public static void pokreniMoreInfoProzor(Student s){
+		MoreInfo prozor = new MoreInfo(s);
 		prozor.setVisible(true);
 		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
 	}

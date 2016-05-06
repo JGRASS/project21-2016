@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Cas;
+import model.Student;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -14,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
@@ -27,7 +31,7 @@ public class MoreInfo extends JFrame {
 	private JLabel lblBrTel;
 	private JTextField txtBrTel;
 	private JLabel lblEmail;
-	private JTextField textField;
+	private JTextField txtEmail;
 	private JLabel lblUplaceno;
 	private JTextField txtUplaceno;
 	private JButton btnIzmeni;
@@ -41,11 +45,12 @@ public class MoreInfo extends JFrame {
 	private JTextArea textAreaOpis;
 	private JTextArea textAreaDomaci;
 	private JButton btnCancel;
+	private JButton btnDodajCas;
 
 	/**
 	 * Create the frame.
 	 */
-	public MoreInfo() {
+	public MoreInfo(Student s) {
 		setResizable(false);
 		setTitle("More info...");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -59,7 +64,7 @@ public class MoreInfo extends JFrame {
 		contentPane.add(getLblBrTel(), "flowx,cell 0 1,alignx left,growy");
 		contentPane.add(getTxtBrTel(), "cell 0 1,grow");
 		contentPane.add(getLblEmail(), "flowx,cell 0 2,alignx left,growy");
-		contentPane.add(getTextField(), "cell 0 2,grow");
+		contentPane.add(getTxtEmail(), "cell 0 2,grow");
 		contentPane.add(getLblUplaceno(), "flowx,cell 0 3,grow");
 		contentPane.add(getTxtUplaceno(), "cell 0 3,grow");
 		contentPane.add(getBtnIzmeni(), "cell 0 3,grow");
@@ -71,8 +76,24 @@ public class MoreInfo extends JFrame {
 		contentPane.add(getScrollPane_1(), "cell 0 8,grow");
 		contentPane.add(getBtnSave(), "flowx,cell 0 9,alignx trailing,growy");
 		contentPane.add(getBtnCancel(), "cell 0 9");
+		contentPane.add(getBtnDodajCas(), "cell 0 4");
+		populate(s);
+		
 	}
 
+	private void populate(Student s) {
+		txtImeprezime.setText(s.getImePrezime());
+		txtBrTel.setText(s.getBrTel());
+		txtEmail.setText(s.getEmail());
+		txtUplaceno.setText(String.valueOf(s.getUplaceno()));
+		populateCombo(s.getCasovi());
+	}
+	
+	private void populateCombo(LinkedList<Cas> casovi){
+		for (Cas cas : casovi) {
+			comboBox.addItem(cas.getNaziv());		
+		}
+	}
 	private JLabel getLabel() {
 		if (label == null) {
 			label = new JLabel("");
@@ -114,17 +135,17 @@ public class MoreInfo extends JFrame {
 		}
 		return lblEmail;
 	}
-	private JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setColumns(10);
+	private JTextField getTxtEmail() {
+		if (txtEmail == null) {
+			txtEmail = new JTextField();
+			txtEmail.setColumns(10);
 		}
-		return textField;
+		return txtEmail;
 	}
 	private JLabel getLblUplaceno() {
 		if (lblUplaceno == null) {
 			lblUplaceno = new JLabel("Uplaceno");
-			lblUplaceno.setPreferredSize(new Dimension(50, 14));
+			lblUplaceno.setPreferredSize(new Dimension(30, 14));
 			lblUplaceno.setFont(new Font("Tahoma", Font.BOLD, 13));
 		}
 		return lblUplaceno;
@@ -132,6 +153,7 @@ public class MoreInfo extends JFrame {
 	private JTextField getTxtUplaceno() {
 		if (txtUplaceno == null) {
 			txtUplaceno = new JTextField();
+			txtUplaceno.setEditable(false);
 			txtUplaceno.setColumns(10);
 		}
 		return txtUplaceno;
@@ -139,6 +161,11 @@ public class MoreInfo extends JFrame {
 	private JButton getBtnIzmeni() {
 		if (btnIzmeni == null) {
 			btnIzmeni = new JButton("Izmeni");
+			btnIzmeni.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					txtUplaceno.setEditable(true);
+				}
+			});
 		}
 		return btnIzmeni;
 	}
@@ -215,8 +242,21 @@ public class MoreInfo extends JFrame {
 	private JButton getBtnCancel() {
 		if (btnCancel == null) {
 			btnCancel = new JButton("Cancel");
+			btnCancel.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
 			btnCancel.setPreferredSize(new Dimension(100, 23));
 		}
 		return btnCancel;
+	}
+	
+
+	private JButton getBtnDodajCas() {
+		if (btnDodajCas == null) {
+			btnDodajCas = new JButton("Dodaj cas");
+		}
+		return btnDodajCas;
 	}
 }
