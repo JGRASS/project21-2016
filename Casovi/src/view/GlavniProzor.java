@@ -8,14 +8,21 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.GUIKontroler;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
+import view.models.TblModelStudent;
+
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GlavniProzor extends JFrame {
 
@@ -83,6 +90,11 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem getMntmNewStudent() {
 		if (mntmNewStudent == null) {
 			mntmNewStudent = new JMenuItem("New student");
+			mntmNewStudent.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.pokreniNoviStudentProzor();
+				}
+			});
 			mntmNewStudent.setIcon(new ImageIcon(GlavniProzor.class.getResource("/javax/swing/plaf/metal/icons/ocean/newFolder.gif")));
 		}
 		return mntmNewStudent;
@@ -129,6 +141,7 @@ public class GlavniProzor extends JFrame {
 		if (table == null) {
 			table = new JTable();
 			table.setFillsViewportHeight(true);
+			table.setModel(new TblModelStudent(GUIKontroler.vratiListuStudenata()));
 		}
 		return table;
 	}
@@ -147,7 +160,17 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnBank() {
 		if (btnBank == null) {
 			btnBank = new JButton("Bank");
+			btnBank.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.pokreniBankaProzor();
+				}
+			});
 		}
 		return btnBank;
+	}
+	
+	public void osveziStudentTabelu() {
+		TblModelStudent model = (TblModelStudent) table.getModel();
+		model.staviStudenteUModel(GUIKontroler.vratiListuStudenata());
 	}
 }

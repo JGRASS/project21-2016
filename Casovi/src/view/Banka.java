@@ -6,7 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.GUIKontroler;
 import net.miginfocom.swing.MigLayout;
+import view.models.TblModelBanka;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
@@ -14,6 +18,8 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Banka extends JFrame {
 
@@ -45,9 +51,9 @@ public class Banka extends JFrame {
 	 * Create the frame.
 	 */
 	public Banka() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("Bank");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 436, 305);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,6 +84,7 @@ public class Banka extends JFrame {
 		if (table == null) {
 			table = new JTable();
 			table.setFillsViewportHeight(true);
+			table.setModel(new TblModelBanka(GUIKontroler.vratiListuStudenata()));
 		}
 		return table;
 	}
@@ -98,8 +105,18 @@ public class Banka extends JFrame {
 	private JButton getBtnOK() {
 		if (btnOK == null) {
 			btnOK = new JButton("OK");
+			btnOK.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
 			btnOK.setPreferredSize(new Dimension(100, 23));
 		}
 		return btnOK;
+	}
+	
+	public void osveziBankaTabelu() {
+		TblModelBanka model = (TblModelBanka) table.getModel();
+		model.staviStudenteUModel(GUIKontroler.vratiListuStudenata());
 	}
 }

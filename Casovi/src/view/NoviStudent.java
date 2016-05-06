@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.GUIKontroler;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -48,7 +50,7 @@ public class NoviStudent extends JFrame {
 	public NoviStudent() {
 		setResizable(false);
 		setTitle("New Student");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 326, 198);
 		contentPane = new JPanel();
 		contentPane.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -112,6 +114,8 @@ public class NoviStudent extends JFrame {
 			btnAdd = new JButton("Add");
 			btnAdd.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.dodajStudenta(txtImeIPrezime.getText(),txtBrojtelefona.getText(),txtEmail.getText());
+					dispose();
 				}
 			});
 		}
