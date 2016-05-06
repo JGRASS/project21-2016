@@ -33,13 +33,13 @@ public class Casovi implements CasoviInterface{
 
 	@Override
 	public void serialize(String path) {
-		SOSerialize.izvrsi();
+		SOSerialize.izvrsi(path, studenti);
 		
 	}
 
 	@Override
 	public void deserialize(String path) {
-		SODeserialize.izvrsi();
+		SODeserialize.izvrsi(path, studenti);
 		
 	}
 
@@ -49,8 +49,8 @@ public class Casovi implements CasoviInterface{
 	}
 
 	@Override
-	public Student pronadjiStudenta(String imePrezime, String brTel) {
-		return SOPronadjiStudenta.izvrsi(imePrezime, brTel);
+	public Student pronadjiStudenta(String brTel) {
+		return SOPronadjiStudenta.izvrsi(brTel, studenti);
 		
 	}
 }

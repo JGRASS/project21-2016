@@ -8,6 +8,7 @@ import controller.so.SODodajStudenta;
 import model.Casovi;
 import model.Student;
 import model.interfaces.CasoviInterface;
+import util.Utility;
 import view.Banka;
 import view.GlavniProzor;
 import view.MoreInfo;
@@ -31,6 +32,8 @@ public class GUIKontroler {
 					casovi = new Casovi();
 					glavniProzor = new GlavniProzor();
 					glavniProzor.setVisible(true);
+					glavniProzor.setLocationRelativeTo(null);
+					deserijalizuj();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,19 +51,19 @@ public class GUIKontroler {
 	public static void pokreniMoreInfoProzor(){
 		MoreInfo prozor = new MoreInfo();
 		prozor.setVisible(true);
-		prozor.setLocationRelativeTo(null);
+		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
 	}
 	
 	public static void pokreniBankaProzor(){
 		Banka prozor = new Banka();
 		prozor.setVisible(true);
-		prozor.setLocationRelativeTo(null);
+		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
 	}
 	
 	public static void pokreniNoviStudentProzor(){
 		NoviStudent prozor = new NoviStudent();
 		prozor.setVisible(true);
-		prozor.setLocationRelativeTo(null);
+		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
 	}
 	
 	public static LinkedList<Student> vratiListuStudenata(){
@@ -83,5 +86,15 @@ public class GUIKontroler {
 		casovi.izbrisiStudenta(student);
 		glavniProzor.osveziStudentTabelu();
 		promena = true;
+	}
+	
+	public static void serijalizuj() {
+		casovi.serialize(Utility.getResourcesDir() + "casovi.out");	
+		promena = false;
+	}
+	
+	public static void deserijalizuj() {
+		casovi.deserialize(Utility.getResourcesDir() + "casovi.out");
+		glavniProzor.osveziStudentTabelu();
 	}
 }

@@ -14,7 +14,10 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.security.cert.Extension;
 
 public class NoviStudent extends JFrame {
 
@@ -93,13 +96,24 @@ public class NoviStudent extends JFrame {
 		}
 		return txtEmail;
 	}
+	
 	private JButton getBtnAdd() {
 		if (btnAdd == null) {
 			btnAdd = new JButton("Add");
+			btnAdd.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyPressed(KeyEvent e) {
+					int c = e.getKeyCode();
+					if(c == KeyEvent.VK_ENTER){
+						btnAdd.doClick();
+					}
+				}
+			});
 			btnAdd.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					GUIKontroler.dodajStudenta(txtImeIPrezime.getText(),txtBrojtelefona.getText(),txtEmail.getText());
 					dispose();
+					
 				}
 			});
 		}
@@ -108,6 +122,11 @@ public class NoviStudent extends JFrame {
 	private JButton getBtnCancel() {
 		if (btnCancel == null) {
 			btnCancel = new JButton("Cancel");
+			btnCancel.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
 		}
 		return btnCancel;
 	}

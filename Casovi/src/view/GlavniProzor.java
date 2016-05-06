@@ -25,6 +25,9 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 public class GlavniProzor extends JFrame {
 
@@ -92,6 +95,8 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem getMntmNewStudent() {
 		if (mntmNewStudent == null) {
 			mntmNewStudent = new JMenuItem("New student");
+			mntmNewStudent.setMnemonic('n');
+			mntmNewStudent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.ALT_MASK));
 			mntmNewStudent.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					GUIKontroler.pokreniNoviStudentProzor();
@@ -104,6 +109,13 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem getMntmSave() {
 		if (mntmSave == null) {
 			mntmSave = new JMenuItem("Save");
+			mntmSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.serijalizuj();
+				}
+			});
+			mntmSave.setMnemonic('s');
+			mntmSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_MASK));
 			mntmSave.setIcon(new ImageIcon(GlavniProzor.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
 		}
 		return mntmSave;
@@ -111,6 +123,8 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem getMntmExit() {
 		if (mntmExit == null) {
 			mntmExit = new JMenuItem("Exit");
+			mntmExit.setMnemonic('e');
+			mntmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK));
 			mntmExit.setIcon(new ImageIcon(GlavniProzor.class.getResource("/javax/swing/plaf/metal/icons/ocean/close.gif")));
 		}
 		return mntmExit;
@@ -118,6 +132,7 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem getMntmAbout() {
 		if (mntmAbout == null) {
 			mntmAbout = new JMenuItem("About");
+			mntmAbout.setMnemonic('a');
 			mntmAbout.setIcon(new ImageIcon(GlavniProzor.class.getResource("/javax/swing/plaf/metal/icons/Inform.gif")));
 		}
 		return mntmAbout;

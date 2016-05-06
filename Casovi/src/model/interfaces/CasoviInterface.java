@@ -41,5 +41,5 @@ public interface CasoviInterface {
 	 * @param brTel - zadati broj telefona
 	 * @return objekat klase Student
 	 */
-	public Student pronadjiStudenta(String imePrezime,String brTel);
+	public Student pronadjiStudenta(String brTel);
 }
