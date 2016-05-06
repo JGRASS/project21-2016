@@ -17,7 +17,7 @@ public interface CasoviInterface {
 	public void dodajStudenta(Student student);
 	/**
 	 * Metoda izbacuje studenta iz liste.
-	 * @param student klase Student
+	 * @param indeks u listi
 	 */
 	public void izbrisiStudenta(Student student);
 	/**

@@ -10,9 +10,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.GUIKontroler;
+import model.Student;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
@@ -154,6 +156,21 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnDelete() {
 		if (btnDelete == null) {
 			btnDelete = new JButton("Delete");
+			btnDelete.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(table.getSelectedRow() == -1){
+						GUIKontroler.upozoriDaBiraRed();
+						return;
+					}
+					int opcija = JOptionPane.showConfirmDialog(getContentPane(), "Da li ste sigurni?","Brisanje",JOptionPane.YES_NO_OPTION);
+					if(opcija == JOptionPane.YES_OPTION){
+						TblModelStudent model = (TblModelStudent) table.getModel();
+						Student s = model.vratiStudenta(table.getSelectedRow());
+						GUIKontroler.izbrisiStudenta(s);
+					}
+					
+				}
+			});
 		}
 		return btnDelete;
 	}

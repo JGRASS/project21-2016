@@ -37,6 +37,13 @@ public class Student implements Serializable{
 	public Student(){
 		casovi = new LinkedList<Cas>();
 	}
+	public Student(String imePrezime, String brTel, String email){
+		this.imePrezime = imePrezime;
+		this.brTel = brTel;
+		this.email = email;
+		this.casovi = new LinkedList<>();
+		this.uplaceno = 0;
+	}
 	public Student(String imePrezime, String brTel, String email, int uplaceno, LinkedList<Cas> casovi) {
 		this.imePrezime = imePrezime;
 		this.brTel = brTel;

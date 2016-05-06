@@ -53,4 +53,8 @@ public class TblModelStudent extends AbstractTableModel{
 		this.studenti = (LinkedList<Student>) studenti;
 		fireTableDataChanged();
 	}
+	
+	public Student vratiStudenta(int index){
+		return studenti.get(index);
+	}
 }

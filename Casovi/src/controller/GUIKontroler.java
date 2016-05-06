@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
+import controller.so.SODodajStudenta;
 import model.Casovi;
 import model.Student;
 import model.interfaces.CasoviInterface;
@@ -22,6 +23,7 @@ public class GUIKontroler {
 	 */
 	private static CasoviInterface casovi;
 	private static boolean promena = false;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -71,6 +73,15 @@ public class GUIKontroler {
 	}
 
 	public static void dodajStudenta(String imePrezime,String brTel,String email) {
+		Student s = new Student(imePrezime,brTel,email);
+		casovi.dodajStudenta(s);
+		glavniProzor.osveziStudentTabelu();
+		promena = true;
+	}
+	
+	public static void izbrisiStudenta(Student student){
+		casovi.izbrisiStudenta(student);
+		glavniProzor.osveziStudentTabelu();
 		promena = true;
 	}
 }
