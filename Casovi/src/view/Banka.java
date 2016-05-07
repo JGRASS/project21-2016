@@ -45,6 +45,7 @@ public class Banka extends JFrame {
 		setContentPane(contentPane);
 		contentPane.add(getPanel(), BorderLayout.SOUTH);
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
+		txtIznos.setText(Integer.toString(GUIKontroler.izracunajUkupanIznos()));
 	}
 
 	private JPanel getPanel() {

@@ -127,4 +127,12 @@ public class GUIKontroler {
 	public static void osvezi(Student s) {
 		glavniProzor.osveziStudentTabelu();
 	}
+	
+	public static int izracunajUkupanIznos(){
+		int suma = 0;
+		for(int i = 0; i < casovi.vratiStudente().size(); i++){
+			suma += casovi.vratiStudente().get(i).getUplaceno();
+		}
+		return suma;
+	}
 }
