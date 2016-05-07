@@ -58,13 +58,13 @@ public class CasoviTest {
 		casovi.serialize(path);
 	}
 	
-	@Test
+	@Test (expected = java.lang.RuntimeException.class)
 	public void testSerializeNULL(){
 		String path = null;
 		casovi.serialize(path);
 	}
 	
-	@Test
+	@Test (expected = java.lang.RuntimeException.class)
 	public void testSerializeEmpty(){
 		String path = "";
 		casovi.serialize(path);
@@ -79,13 +79,13 @@ public class CasoviTest {
 		casovi.deserialize(path);
 	}
 	
-	@Test
+	@Test (expected = java.lang.RuntimeException.class)
 	public void testDeserializeNULL(){
 		String path = null;
 		casovi.deserialize(path);
 	}
 	
-	@Test
+	@Test (expected = java.lang.RuntimeException.class)
 	public void testDeserializeEmpty(){
 		String path = "";
 		casovi.deserialize(path);
@@ -101,21 +101,21 @@ public class CasoviTest {
 		casovi.dodajCas(c, s);
 	}
 	
-	@Test
+	@Test (expected = java.lang.RuntimeException.class)
 	public void testDodajCasNullCas() {
 		Student s = new Student("Pera Peric", "lalala", "lala@gmail.com");
 		Cas c = null;
 		casovi.dodajCas(c, s);
 	}
 	
-	@Test
+	@Test (expected = java.lang.RuntimeException.class)
 	public void testDodajCasNullStudent() {
 		Student s = null;
 		Cas c = new Cas("prvi", "Bla bla", "Nema");
 		casovi.dodajCas(c, s);
 	}
 	
-	@Test
+	@Test (expected = java.lang.RuntimeException.class)
 	public void testDodajCasNull() {
 		Student s = null;
 		Cas c = null;
@@ -132,7 +132,7 @@ public class CasoviTest {
 		casovi.updateStudenta(s);
 	}
 	
-	@Test
+	@Test (expected = java.lang.RuntimeException.class)
 	public void testUpdateStudentaNull() {
 		Student s = null;
 		casovi.updateStudenta(s);

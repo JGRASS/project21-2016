@@ -12,6 +12,7 @@ import model.Cas;
 import model.Student;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -25,6 +26,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.WindowStateListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 public class MoreInfo extends JFrame {
 
@@ -84,7 +88,16 @@ public class MoreInfo extends JFrame {
 		populate();
 		
 	}
-
+	
+	public void dodajCombo(){
+		comboBox.addItem(s.getCasovi().getLast().getNaziv());
+		
+		if(!s.getCasovi().isEmpty()){
+			comboBox.setSelectedItem(s.getCasovi().getLast().getNaziv());
+			textAreaOpis.setText(s.getCasovi().getLast().getOpis());
+			textAreaDomaci.setText(s.getCasovi().getLast().getDomaci());
+		}
+	}
 	private void populate() {
 		txtImeprezime.setText(s.getImePrezime());
 		txtBrTel.setText(s.getBrTel());
@@ -94,12 +107,14 @@ public class MoreInfo extends JFrame {
 	}
 	
 	private void populateCombo(LinkedList<Cas> casovi){
-		for (Cas cas : casovi) {
-			comboBox.addItem(cas.getNaziv());	
+		
+		for (int i = 0; i < casovi.size(); i++) {
+			comboBox.insertItemAt(casovi.get(i).getNaziv(), i);
 		}
 		if(!casovi.isEmpty()){
-			textAreaOpis.setText(casovi.getFirst().getOpis());
-			textAreaDomaci.setText(casovi.getFirst().getDomaci());
+			comboBox.setSelectedItem(casovi.getLast().getNaziv());
+			textAreaOpis.setText(casovi.getLast().getOpis());
+			textAreaDomaci.setText(casovi.getLast().getDomaci());
 		}
 	}
 	private JLabel getLabel() {
@@ -203,9 +218,13 @@ public class MoreInfo extends JFrame {
 			btnSave.setPreferredSize(new Dimension(100, 23));
 			btnSave.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					cuvaj();
-					GUIKontroler.osvezi(s);
-					dispose();
+					try {
+						cuvaj();
+						GUIKontroler.osvezi(s);
+						dispose();
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(getContentPane(), "Iznos mora biti broj.", "Greska", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			});
 		}
@@ -282,14 +301,13 @@ public class MoreInfo extends JFrame {
 					//nakon dodatog casa(dugme save u prozoru DodajCas) treba opet da se update taj student u modelu
 					//i da se ponovo populate combo
 					GUIKontroler.osvezi(s);
-					populate();
 					GUIKontroler.pokreniDodajCasProzor(s);
 				}
 			});
 		}
 		return btnDodajCas;
 	}
-	private void cuvaj(){
+	private void cuvaj() throws NumberFormatException{
 		s.setBrTel(txtBrTel.getText());
 		s.setImePrezime(txtImeprezime.getText());
 		s.setEmail(txtEmail.getText());

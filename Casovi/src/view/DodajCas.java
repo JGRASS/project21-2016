@@ -109,6 +109,7 @@ public class DodajCas extends JFrame {
 			btnSave.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					GUIKontroler.dodajCas(txtNaziv.getText(), txtOpis.getText(), txtDomaci.getText(),s);
+					GUIKontroler.dodajCombo();
 					dispose();
 				}
 			});

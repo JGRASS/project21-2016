@@ -25,6 +25,7 @@ public class GUIKontroler {
 	 * Komunikacija sa modelom.
 	 */
 	private static CasoviInterface casovi;
+	private static MoreInfo mi;
 	private static boolean promena = false;
 	
 	public static void main(String[] args) {
@@ -50,18 +51,18 @@ public class GUIKontroler {
 				System.exit(0);
 			}
 		}else {
-			int opcija = JOptionPane.showConfirmDialog(glavniProzor.getContentPane(), "Da li zelite da sacuvate i zatvorite aplikaciju?","Izlaz",JOptionPane.YES_NO_OPTION);
+			int opcija = JOptionPane.showConfirmDialog(glavniProzor.getContentPane(), "Da li zelite da sacuvate izmene pre zatvaranja?","Izlaz",JOptionPane.YES_NO_OPTION);
 			if(opcija == JOptionPane.YES_OPTION){
-				serijalizuj();
-				System.exit(0);
+				serijalizuj();	
 			}
+			System.exit(0);
 		}
 	}
 	
 	public static void pokreniMoreInfoProzor(Student s){
-		MoreInfo prozor = new MoreInfo(s);
-		prozor.setVisible(true);
-		prozor.setLocationRelativeTo(glavniProzor.getContentPane());
+		mi = new MoreInfo(s);
+		mi.setVisible(true);
+		mi.setLocationRelativeTo(glavniProzor.getContentPane());
 	}
 	
 	public static void pokreniBankaProzor(){
@@ -145,5 +146,8 @@ public class GUIKontroler {
 			suma += casovi.vratiStudente().get(i).getUplaceno();
 		}
 		return suma;
+	}
+	public static void dodajCombo(){
+		mi.dodajCombo();
 	}
 }
