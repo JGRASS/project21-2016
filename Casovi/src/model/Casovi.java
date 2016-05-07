@@ -8,6 +8,7 @@ import controller.so.SODodajStudenta;
 import controller.so.SOIzbrisiStudenta;
 import controller.so.SOPronadjiStudenta;
 import controller.so.SOSerialize;
+import controller.so.SOUpdate;
 import model.interfaces.CasoviInterface;
 /**
  * Klasa Casovi predstavlja glavnu klasu.
@@ -58,6 +59,12 @@ public class Casovi implements CasoviInterface{
 	@Override
 	public void dodajCas(Cas cas, Student s) {
 		SODodajCas.izvrsi(cas,s,studenti);
+	}
+
+	@Override
+	public void updateStudenta(Student s) {
+		SOUpdate.izvrsi(s,studenti);
+		
 	}
 	
 }

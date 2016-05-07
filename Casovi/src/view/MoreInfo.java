@@ -277,6 +277,14 @@ public class MoreInfo extends JFrame {
 			btnDodajCas = new JButton("Dodaj cas");
 			btnDodajCas.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					s.setBrTel(txtBrTel.getText());
+					s.setEmail(txtEmail.getText());
+					s.setUplaceno(Integer.parseInt(txtUplaceno.getText()));
+					//override equals u studentu po imenu, napravi SOUpdate
+					//try-catch za numberFormatEx za izmenu polja Uplaceno
+					//nakon dodatog casa(dugme save u prozoru DodajCas) treba opet da se update taj student u modelu
+					//i da se ponovo populate combo
+					GUIKontroler.osvezi(s);
 					GUIKontroler.pokreniDodajCasProzor(s);
 					populate();
 				}

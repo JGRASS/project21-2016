@@ -125,6 +125,7 @@ public class GUIKontroler {
 	}
 
 	public static void osvezi(Student s) {
+		casovi.updateStudenta(s);
 		glavniProzor.osveziStudentTabelu();
 	}
 	

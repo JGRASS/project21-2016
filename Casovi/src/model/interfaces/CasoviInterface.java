@@ -49,4 +49,5 @@ public interface CasoviInterface {
 	 * @param s - objekat klase Student
 	 */
 	public void dodajCas(Cas cas,Student s);
+	public void updateStudenta(Student s);
 }
