@@ -127,6 +127,7 @@ public class GUIKontroler {
 			cas.setDomaci(domaci);
 			casovi.dodajCas(cas, s);
 			glavniProzor.osveziStudentTabelu();
+			promena = true;
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(glavniProzor, e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 		}
@@ -135,6 +136,7 @@ public class GUIKontroler {
 	public static void osvezi(Student s) {
 		casovi.updateStudenta(s);
 		glavniProzor.osveziStudentTabelu();
+		promena = true;
 	}
 	
 	public static int izracunajUkupanIznos(){

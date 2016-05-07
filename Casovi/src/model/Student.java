@@ -91,11 +91,12 @@ public class Student implements Serializable{
 		if(!casovi.contains(cas))
 			casovi.add(cas);
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((brTel == null) ? 0 : brTel.hashCode());
+		result = prime * result + ((imePrezime == null) ? 0 : imePrezime.hashCode());
 		return result;
 	}
 	@Override
@@ -107,10 +108,10 @@ public class Student implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		if (brTel == null) {
-			if (other.brTel != null)
+		if (imePrezime == null) {
+			if (other.imePrezime != null)
 				return false;
-		} else if (!brTel.equals(other.brTel))
+		} else if (!imePrezime.equals(other.imePrezime))
 			return false;
 		return true;
 	}

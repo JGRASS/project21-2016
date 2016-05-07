@@ -1,11 +1,18 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * Klasa Cas predstavlja jedan privatni cas.
  * Cas ima svoj naziv, opis i domaci zadatak.
  * @author Jelena Marjanovic, Milos Ljubisavljevic, Djordje Nestorovic
  *
  */
-public class Cas {
+public class Cas implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Kratak naziv casa.
 	 */

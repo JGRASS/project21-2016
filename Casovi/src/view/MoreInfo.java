@@ -95,7 +95,7 @@ public class MoreInfo extends JFrame {
 	
 	private void populateCombo(LinkedList<Cas> casovi){
 		for (Cas cas : casovi) {
-			comboBox.addItem(cas.getNaziv());		
+			comboBox.addItem(cas.getNaziv());	
 		}
 		if(!casovi.isEmpty()){
 			textAreaOpis.setText(casovi.getFirst().getOpis());
@@ -203,10 +203,7 @@ public class MoreInfo extends JFrame {
 			btnSave.setPreferredSize(new Dimension(100, 23));
 			btnSave.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					s.setBrTel(txtBrTel.getText());
-					s.setImePrezime(txtImeprezime.getText());
-					s.setEmail(txtEmail.getText());
-					s.setUplaceno(Integer.parseInt(txtUplaceno.getText()));
+					cuvaj();
 					GUIKontroler.osvezi(s);
 					dispose();
 				}
@@ -285,11 +282,21 @@ public class MoreInfo extends JFrame {
 					//nakon dodatog casa(dugme save u prozoru DodajCas) treba opet da se update taj student u modelu
 					//i da se ponovo populate combo
 					GUIKontroler.osvezi(s);
-					GUIKontroler.pokreniDodajCasProzor(s);
 					populate();
+					GUIKontroler.pokreniDodajCasProzor(s);
 				}
 			});
 		}
 		return btnDodajCas;
+	}
+	private void cuvaj(){
+		s.setBrTel(txtBrTel.getText());
+		s.setImePrezime(txtImeprezime.getText());
+		s.setEmail(txtEmail.getText());
+		s.setUplaceno(Integer.parseInt(txtUplaceno.getText()));
+		if(comboBox.getSelectedIndex() != -1){
+			s.getCasovi().get(comboBox.getSelectedIndex()).setOpis(textAreaOpis.getText());
+			s.getCasovi().get(comboBox.getSelectedIndex()).setDomaci(textAreaDomaci.getText());
+		}
 	}
 }
