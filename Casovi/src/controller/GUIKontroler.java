@@ -10,6 +10,7 @@ import model.Casovi;
 import model.Student;
 import model.interfaces.CasoviInterface;
 import util.Utility;
+import view.About;
 import view.Banka;
 import view.DodajCas;
 import view.GlavniProzor;
@@ -214,5 +215,15 @@ public class GUIKontroler {
 	 */
 	public static void dodajCombo(){
 		mi.dodajCombo();
+	}
+	
+	public static void dodatCas(){
+		mi.dodatCas();
+	}
+	
+	public static void pokreniAboutProzor(){
+		About prozor = new About();
+		prozor.setVisible(true);
+		prozor.setLocationRelativeTo(null);
 	}
 }

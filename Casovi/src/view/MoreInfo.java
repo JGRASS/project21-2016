@@ -54,6 +54,8 @@ public class MoreInfo extends JFrame {
 	private JButton btnCancel;
 	private JButton btnDodajCas;
 	private Student s;
+	private int dodatoCasova = 0;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -87,6 +89,10 @@ public class MoreInfo extends JFrame {
 		this.s = s;
 		populate();
 		
+	}
+	
+	public void dodatCas(){
+		dodatoCasova++;
 	}
 	
 	public void dodajCombo(){
@@ -279,6 +285,12 @@ public class MoreInfo extends JFrame {
 			btnCancel = new JButton("Cancel");
 			btnCancel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if(dodatoCasova > 0){
+						for(int i = 0; i < dodatoCasova; i ++){
+							s.getCasovi().removeLast();
+						}
+						dodatoCasova = 0;
+					}
 					dispose();
 				}
 			});

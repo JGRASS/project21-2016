@@ -137,6 +137,11 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem getMntmAbout() {
 		if (mntmAbout == null) {
 			mntmAbout = new JMenuItem("About");
+			mntmAbout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.pokreniAboutProzor();
+				}
+			});
 			mntmAbout.setMnemonic('a');
 			mntmAbout.setIcon(new ImageIcon(GlavniProzor.class.getResource("/javax/swing/plaf/metal/icons/Inform.gif")));
 		}
