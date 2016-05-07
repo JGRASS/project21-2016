@@ -13,6 +13,9 @@ import model.Student;
 public class SODeserialize {
 	
 	public static void izvrsi(String path, LinkedList<Student> studenti) {
+		if(path == null || path.isEmpty()){
+			throw new RuntimeException("Putanja ne sme biti null ni prazan string!");			
+		}
 		try(ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(path)))) {
 					@SuppressWarnings("unchecked")
 					LinkedList<Student> studenti2 =(LinkedList<Student>) in.readObject();
