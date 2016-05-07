@@ -58,6 +58,43 @@ public class Cas {
 			throw new RuntimeException("Domaci ne sme biti prazan.");
 		this.domaci = domaci;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((domaci == null) ? 0 : domaci.hashCode());
+		result = prime * result + ((naziv == null) ? 0 : naziv.hashCode());
+		result = prime * result + ((opis == null) ? 0 : opis.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cas other = (Cas) obj;
+		if (domaci == null) {
+			if (other.domaci != null)
+				return false;
+		} else if (!domaci.equals(other.domaci))
+			return false;
+		if (naziv == null) {
+			if (other.naziv != null)
+				return false;
+		} else if (!naziv.equals(other.naziv))
+			return false;
+		if (opis == null) {
+			if (other.opis != null)
+				return false;
+		} else if (!opis.equals(other.opis))
+			return false;
+		return true;
+	}
 	
 	
 }
