@@ -44,9 +44,17 @@ public class GUIKontroler {
 	}
 	
 	public static void ugasi(){
-		int opcija = JOptionPane.showConfirmDialog(glavniProzor.getContentPane(), "Da li zelite da zatvorite aplikaciju?","Izlaz",JOptionPane.YES_NO_OPTION);
-		if(opcija == JOptionPane.YES_OPTION){
-			System.exit(0);
+		if(promena == false){
+			int opcija = JOptionPane.showConfirmDialog(glavniProzor.getContentPane(), "Da li zelite da zatvorite aplikaciju?","Izlaz",JOptionPane.YES_NO_OPTION);
+			if(opcija == JOptionPane.YES_OPTION){
+				System.exit(0);
+			}
+		}else {
+			int opcija = JOptionPane.showConfirmDialog(glavniProzor.getContentPane(), "Da li zelite da sacuvate i zatvorite aplikaciju?","Izlaz",JOptionPane.YES_NO_OPTION);
+			if(opcija == JOptionPane.YES_OPTION){
+				serijalizuj();
+				System.exit(0);
+			}
 		}
 	}
 	
