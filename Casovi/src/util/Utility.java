@@ -1,7 +1,11 @@
 package util;
 
 import java.io.File;
-
+/**
+ * Klasa Utility, sadrzi metodu koja vraca putanju do projekta
+ * @author Jelena Marjanovic, Milos Ljubisavljevic, Djordje Nestorovic
+ *
+ */
 public class Utility {
 	/**
 	 * Metoda vraca putanju do projekta.

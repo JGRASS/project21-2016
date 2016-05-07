@@ -9,9 +9,18 @@ import java.io.ObjectInputStream;
 import java.util.LinkedList;
 
 import model.Student;
-
+/**
+ * Klasa SODeserialize je klasa sistemske operacije deserijalizacije.
+ * 
+ * @author Jelena Marjanovic, Milos Ljubisavljevic, Djordje Nestorovic
+ *
+ */
 public class SODeserialize {
-	
+	/**
+	 * Funkcija za deserijalizaciju
+	 * @param path Putanja do fajla koji se deserijalizuje, u vidu Stringa
+	 * @param studenti Lista studenata
+	 */
 	public static void izvrsi(String path, LinkedList<Student> studenti) {
 		if(path == null || path.isEmpty()){
 			throw new RuntimeException("Putanja ne sme biti null ni prazan string!");			
